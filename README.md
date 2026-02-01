@@ -22,8 +22,10 @@ Full-Stack Coding Challenge: Smart Support Inbox (Python Backend)
 
 4. Install dependencies
     ```shell
-    pip install django djangorestframework psycopg2
+    pip install django djangorestframework psycopg2 django-environ openai-agents
     ```
+    
+5. Make sure the environment variable `OPENAI_API_KEY` is set.
 
 5. Run development server
     ```shell
