@@ -1,1 +1,67 @@
-<p>ticket-detail works!</p>
+<div class="mb-4 p-8">
+    <p-card header="{{ ticket()?.subject }}">
+        <!-- <ng-template #header>
+            <span>{{ticket()?.subject}}</span>
+        </ng-template> -->
+        <p-panel class="details" header="Details">
+            <div class="details-row">
+                <span>Priority:</span>
+                <p-tag
+                    [value]="ticket() ? ticket()?.priority : ''"
+                    [severity]="getPrioritySeverity(ticket()?.priority)"
+                />
+            </div>
+            <div class="details-row">
+                <span>Category:</span>
+                <span>{{ ticket()?.category }}</span>
+            </div>
+            <div class="details-row">
+                <span>Author:</span>
+                <a href="{{ `mailto:${ticket()?.from_email}` }}" target="_blank">{{
+                    ticket()?.from_email
+                }}</a>
+                <!-- <span>{{ ticket()?.from_email }}</span> -->
+            </div>
+            <div class="details-row">
+                <span>Created:</span>
+                <span>{{ ticket()?.created_at | date: 'medium' }}</span>
+            </div>
+        </p-panel>
+
+        <p-panel class="message" header="Message">
+            <p-message severity="secondary" icon="pi pi-info-circle" styleClass="h-full">{{
+                'Summary: ' + ticket()?.summary
+            }}</p-message>
+            <p class="m-0">
+                {{ ticket()?.message }}
+            </p>
+        </p-panel>
+
+        <p-panel class="reply" header="Reply">
+            <!-- <p-iftalabel> -->
+            <textarea
+                id="reply-textarea"
+                rows="10"
+                cols="50"
+                pTextarea
+                fluid
+                style="resize: none"
+                [(ngModel)]="reply"
+            ></textarea>
+            <!-- <label for="reply-textarea">Reply</label>
+            </p-iftalabel> -->
+            <a
+                class="send-reply"
+                href="{{
+                    `mailto:${ticket()?.from_email}?subject=Re: ${ticket()?.subject}&body=${reply()}`
+                }}"
+                pButton
+                target="_blank"
+                ref="noopener noreferrer"
+            >
+                <i class="pi pi-send" pButtonIcon></i>
+                <span pButtonLabel>Send</span>
+            </a>
+        </p-panel>
+    </p-card>
+</div>

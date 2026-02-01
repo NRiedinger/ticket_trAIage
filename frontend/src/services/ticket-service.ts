@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Ticket} from '../models/ticket.model';
+import { Ticket } from '../models/ticket.model';
 
 @Injectable({
     providedIn: 'root',
@@ -8,7 +8,11 @@ import { Ticket} from '../models/ticket.model';
 export class TicketService {
     private http = inject(HttpClient);
 
-    public getAllTickets() {
+    public getAllTickets(){
         return this.http.get('/api/tickets/');
+    }
+
+    public getTicketById(id: number) {
+        return this.http.get(`/api/tickets/${id}`);
     }
 }
