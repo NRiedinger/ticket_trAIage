@@ -21,7 +21,7 @@ export interface Ticket {
     created_at: string;
     category: TicketCategory;
     priority: TicketPriority;
-    summary?: string;
-    suggested_reply?: string;
+    summary: string;
+    suggested_reply: string;
     feedback_accepted?: boolean | null;
 }

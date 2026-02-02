@@ -7,7 +7,9 @@ import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { SkeletonModule } from 'primeng/skeleton';
 import { MultiSelectModule } from 'primeng/multiselect';
-
+import { ToastModule } from 'primeng/toast';
+import { MessageModule } from 'primeng/message';
+import { MessageService } from 'primeng/api';
 import { TicketService } from '../../services/ticket-service/ticket-service';
 import { Ticket } from '../../models/ticket.model';
 import { Router } from '@angular/router';
@@ -27,12 +29,16 @@ interface Column {
         CommonModule,
         SkeletonModule,
         MultiSelectModule,
+        MessageModule,
+        ToastModule,
     ],
+    providers: [MessageService],
     templateUrl: './ticket-list.html',
     styleUrl: './ticket-list.css',
 })
 export class TicketList {
     ticketService = inject(TicketService);
+    messageService = inject(MessageService);
     tickets = signal<Ticket[]>([]);
     loading = true;
     router = inject(Router);
@@ -58,9 +64,16 @@ export class TicketList {
         this.loading = true;
         this.tickets.set(Array.from({ length: 10 }).map((_, i) => ({}) as Ticket));
 
-        this.ticketService.getAllTickets().subscribe((data) => {
-            this.tickets.set(data as Ticket[]);
-            this.loading = false;
+        this.ticketService.getAllTickets().subscribe({
+            next: (data) => {
+                this.tickets.set(data as Ticket[]);
+                this.loading = false;
+            },
+            error: (error) => {
+                console.error(error);
+                this.showError();
+                this.loading = false;
+            },
         });
     }
 
@@ -104,5 +117,13 @@ export class TicketList {
             case 'High':
                 return 'danger';
         }
+    }
+
+    showError() {
+        this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed to load tickets :(',
+        });
     }
 }

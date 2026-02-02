@@ -13,6 +13,8 @@ import { MessageModule } from 'primeng/message';
 import { PanelModule } from 'primeng/panel';
 import { TagModule } from 'primeng/tag';
 import { SkeletonModule } from 'primeng/skeleton';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
     selector: 'app-ticket-detail',
@@ -27,13 +29,16 @@ import { SkeletonModule } from 'primeng/skeleton';
         PanelModule,
         TagModule,
         SkeletonModule,
+        ToastModule,
     ],
+    providers: [MessageService],
     templateUrl: './ticket-detail.html',
     styleUrl: './ticket-detail.css',
 })
 export class TicketDetail {
     ticketService = inject(TicketService);
     activatedRoute = inject(ActivatedRoute);
+    messageService = inject(MessageService);
     router = inject(Router);
     loading = true;
     ticket = signal<Ticket | null>(null);
@@ -42,11 +47,18 @@ export class TicketDetail {
     ngOnInit() {
         this.loading = true;
         this.activatedRoute.params.subscribe((params: any) => {
-            this.ticketService.getTicketById(params.id).subscribe((data: any) => {
-                const ticket = data;
-                this.ticket.set(ticket);
-                this.reply.set(ticket.suggested_reply);
-                this.loading = false;
+            this.ticketService.getTicketById(params.id).subscribe({
+                next: (data) => {
+                    const ticket = data as Ticket;
+                    this.ticket.set(ticket);
+                    this.reply.set(ticket.suggested_reply);
+                    this.loading = false;
+                },
+                error: (error) => {
+                    console.error(error);
+                    this.showError();
+                    this.loading = false;
+                },
             });
         });
     }
@@ -70,5 +82,13 @@ export class TicketDetail {
 
     onNavigateBack() {
         this.router.navigate(['/tickets']);
+    }
+
+    showError() {
+        this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed load ticket :(',
+        });
     }
 }

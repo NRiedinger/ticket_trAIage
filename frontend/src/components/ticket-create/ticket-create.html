@@ -1,7 +1,11 @@
-<p-toast />
+<p-toast position="bottom-center" />
 <div class="container">
-    <p-panel style="width: 100%;" [showHeader]="false">
-        <form id="createTicketForm" #createTicketForm="ngForm" (ngSubmit)="onSubmit(createTicketForm)">
+    <p-panel style="width: 100%" [showHeader]="false">
+        <form
+            id="createTicketForm"
+            #createTicketForm="ngForm"
+            (ngSubmit)="onSubmit(createTicketForm)"
+        >
             <div>
                 <p-floatlabel variant="on">
                     <input
