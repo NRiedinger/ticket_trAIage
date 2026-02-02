@@ -6,6 +6,7 @@
         [rows]="rows"
         [showCurrentPageReport]="true"
         [first]="first"
+        [resizableColumns]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         (onPage)="pageChange($event)"
         [rowsPerPageOptions]="[10, 25, 50]"
@@ -13,7 +14,7 @@
         <ng-template #header>
             <tr>
                 <th>ID</th>
-                <th>Subject</th>
+                <th style="width: 60%">Subject</th>
                 <th>Priority</th>
                 <th>Category</th>
                 <th>Created</th>

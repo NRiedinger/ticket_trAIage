@@ -49,8 +49,8 @@ class TicketViewSet(viewsets.ModelViewSet):
     """
     queryset = Ticket.objects.all()
     serializer_class = TicketSerializer
-    permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    # permission_classes = [
+    #     permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
     def perform_create(self, serializer):
         ticket_json_stripped = {
@@ -65,7 +65,7 @@ class TicketViewSet(viewsets.ModelViewSet):
         serializer.save(
             suggested_reply=agent_result.final_output.suggested_reply)
 
-        serializer.save(owner=self.request.user)
+        # serializer.save(owner=self.request.user)
 
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):

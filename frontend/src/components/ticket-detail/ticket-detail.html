@@ -1,8 +1,5 @@
-<div class="mb-4 p-8">
+<div>
     <p-card header="{{ ticket()?.subject }}">
-        <!-- <ng-template #header>
-            <span>{{ticket()?.subject}}</span>
-        </ng-template> -->
         <p-panel class="details" header="Details">
             <div class="details-row">
                 <span>Priority:</span>
@@ -20,7 +17,6 @@
                 <a href="{{ `mailto:${ticket()?.from_email}` }}" target="_blank">{{
                     ticket()?.from_email
                 }}</a>
-                <!-- <span>{{ ticket()?.from_email }}</span> -->
             </div>
             <div class="details-row">
                 <span>Created:</span>
@@ -42,7 +38,6 @@
             <textarea
                 id="reply-textarea"
                 rows="10"
-                cols="50"
                 pTextarea
                 fluid
                 style="resize: none"
@@ -60,7 +55,7 @@
                 ref="noopener noreferrer"
             >
                 <i class="pi pi-send" pButtonIcon></i>
-                <span pButtonLabel>Send</span>
+                <span pButtonLabel>Send E-Mail</span>
             </a>
         </p-panel>
     </p-card>

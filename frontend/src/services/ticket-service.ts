@@ -8,11 +8,17 @@ import { Ticket } from '../models/ticket.model';
 export class TicketService {
     private http = inject(HttpClient);
 
-    public getAllTickets(){
+    public getAllTickets() {
         return this.http.get('/api/tickets/');
     }
 
     public getTicketById(id: number) {
         return this.http.get(`/api/tickets/${id}`);
+    }
+
+    public createTicket(ticket: any) {
+        return this.http.post('/api/tickets/', ticket, {
+            timeout: 10000,
+        });
     }
 }

@@ -1,0 +1,9 @@
+::ng-deep .p-panel-content form > * {
+    margin-top: 1em;
+}
+
+div.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -11,7 +11,7 @@ class TicketSerializer(serializers.HyperlinkedModelSerializer):
         fields = [
             "url",
             "id",
-            "owner",
+            # "owner",
             "subject",
             "from_email",
             "message",
@@ -22,7 +22,6 @@ class TicketSerializer(serializers.HyperlinkedModelSerializer):
             "suggested_reply",
             "feedback_accepted",
         ]
-
 
 class UserSerializer(serializers.ModelSerializer):
     tickets = serializers.HyperlinkedIdentityField(

@@ -18,12 +18,12 @@ class Ticket(models.Model):
         ordering = ["created_at"]
 
     # id implicitly assigned by django
-    owner = models.ForeignKey(
-        "auth.User",
-        related_name="tickets",
-        on_delete=models.CASCADE,
-        editable=False
-    )
+    # owner = models.ForeignKey(
+    #     "auth.User",
+    #     related_name="tickets",
+    #     on_delete=models.CASCADE,
+    #     editable=False
+    # )
 
     subject = models.CharField(max_length=255)
     from_email = models.EmailField()

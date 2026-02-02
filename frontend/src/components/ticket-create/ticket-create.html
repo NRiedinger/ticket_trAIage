@@ -1,0 +1,120 @@
+<p-toast />
+<div class="container">
+    <p-panel style="width: 50%;" header="Create ticket">
+        <form id="createTicketForm" #createTicketForm="ngForm" (ngSubmit)="onSubmit(createTicketForm)">
+            <div>
+                <p-floatlabel variant="on">
+                    <input
+                        pInputText
+                        id="input-email"
+                        name="input-email"
+                        [(ngModel)]="email"
+                        #emailinput="ngModel"
+                        email
+                        [invalid]="emailinput.invalid && submitted"
+                        required
+                    />
+                    <label for="input-email">E-Mail</label>
+                </p-floatlabel>
+                @if (emailinput.invalid && submitted) {
+                    <p-message severity="error" size="small" variant="simple">
+                        @if (emailinput.hasError('required')) {
+                            Email is required.
+                        }
+                        @if (emailinput.hasError('email')) {
+                            Please enter a valid email.
+                        }
+                    </p-message>
+                }
+            </div>
+
+            <div>
+                <p-floatlabel variant="on">
+                    <input
+                        pInputText
+                        id="input-subject"
+                        name="input-subject"
+                        [(ngModel)]="subject"
+                        autocomplete="off"
+                        style="width: 100%"
+                        #subjectinput="ngModel"
+                        [invalid]="subjectinput.invalid && submitted"
+                        required
+                    />
+                    <label for="input-subject">Subject</label>
+                </p-floatlabel>
+                @if (subjectinput.invalid && submitted) {
+                    <p-message severity="error" size="small" variant="simple">
+                        Subject is required.
+                    </p-message>
+                }
+            </div>
+
+            <div>
+                <p-floatlabel variant="on">
+                    <textarea
+                        pTextarea
+                        id="textarea-message"
+                        name="textarea-message"
+                        [(ngModel)]="message"
+                        #messagetext="ngModel"
+                        rows="10"
+                        fluid
+                        style="resize: none"
+                        required
+                        [invalid]="messagetext.invalid && submitted"
+                    ></textarea>
+                    <label for="textarea-message">Message</label>
+                </p-floatlabel>
+                @if (messagetext.invalid && submitted) {
+                    <p-message severity="error" size="small" variant="simple">
+                        Please enter a message.
+                    </p-message>
+                }
+            </div>
+
+            <div>
+                <button
+                    pButton
+                    severity="info"
+                    type="submit"
+                    [loading]="loading()"
+                    [disabled]="!createTicketForm.valid"
+                >
+                    <span pButtonLabel>Create</span>
+                </button>
+            </div>
+        </form>
+
+        <!-- <div class="form-row"></div>
+
+        <div class="form-row">
+            <p-floatlabel variant="on">
+                <input pInputText id="input-email" [(ngModel)]="email" autocomplete="off" />
+                <label for="input-email">E-Mail</label>
+            </p-floatlabel>
+        </div>
+        <div class="form-row">
+            <p-floatlabel variant="on">
+                <textarea
+                    pTextarea
+                    id="textarea-message"
+                    [(ngModel)]="message"
+                    rows="10"
+                    fluid
+                    style="resize: none"
+                ></textarea>
+                <label for="textarea-message">Message</label>
+            </p-floatlabel>
+        </div>
+        <div class="form-row">
+            <p-toast />
+            <p-button
+                label="Submit"
+                (onClick)="onSubmit()"
+                [loading]="loading()"
+                [disabled]="checkForm()"
+            ></p-button>
+        </div> -->
+    </p-panel>
+</div>
