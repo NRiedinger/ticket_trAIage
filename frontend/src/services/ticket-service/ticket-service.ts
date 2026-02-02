@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Ticket } from '../models/ticket.model';
+import { Ticket } from '../../models/ticket.model';
 
 @Injectable({
     providedIn: 'root',
@@ -17,8 +17,6 @@ export class TicketService {
     }
 
     public createTicket(ticket: any) {
-        return this.http.post('/api/tickets/', ticket, {
-            timeout: 10000,
-        });
+        return this.http.post('/api/tickets/', ticket);
     }
 }

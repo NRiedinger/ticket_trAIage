@@ -9,28 +9,8 @@ from rest_framework.reverse import reverse
 from rest_framework import renderers
 from rest_framework import viewsets
 from agents import Agent, Runner
-from pydantic import BaseModel
 import json
-
-
-class TicketAgentReply(BaseModel):
-    category: str
-    priority: str
-    summary: str
-    suggested_reply: str
-
-
-agent_instructions = """You are a ticket assistant who helps a customer support team triage inbound messages.
-Each time a support ticket is created, you take the ticket data as JSON and generate the following fields:
-- category ("Billing", "Bug", "Feature", "Account", "Other")
-- priority ("Low", "Medium", "High")
-- summary (summarize the ticket)
-- suggested_reply (suggest a reply to the ticket, the customer support team can use))"""
-agent = Agent(
-    name="Ticket-Assistant",
-    instructions=agent_instructions,
-    output_type=TicketAgentReply
-)
+from .ticket_agent import TicketAgent
 
 
 @api_view(["GET"])
@@ -49,23 +29,15 @@ class TicketViewSet(viewsets.ModelViewSet):
     """
     queryset = Ticket.objects.all()
     serializer_class = TicketSerializer
-    # permission_classes = [
-    #     permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
     def perform_create(self, serializer):
-        ticket_json_stripped = {
-            "subject": self.request.data.get('subject'),
-            "message": self.request.data.get('message'),
-        }
-        agent_result = Runner.run_sync(agent, json.dumps(ticket_json_stripped))
+        agent_result = TicketAgent.run(self.request.data)
 
         serializer.save(category=agent_result.final_output.category)
         serializer.save(priority=agent_result.final_output.priority)
         serializer.save(summary=agent_result.final_output.summary)
         serializer.save(
             suggested_reply=agent_result.final_output.suggested_reply)
-
-        # serializer.save(owner=self.request.user)
 
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):

@@ -10,7 +10,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageModule } from 'primeng/message';
 
 import { MessageService } from 'primeng/api';
-import { TicketService } from '../../services/ticket-service';
+import { TicketService } from '../../services/ticket-service/ticket-service';
 
 @Component({
     selector: 'app-ticket-create',

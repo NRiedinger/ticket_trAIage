@@ -8,7 +8,7 @@ import { TagModule } from 'primeng/tag';
 import { SkeletonModule } from 'primeng/skeleton';
 import { MultiSelectModule } from 'primeng/multiselect';
 
-import { TicketService } from '../../services/ticket-service';
+import { TicketService } from '../../services/ticket-service/ticket-service';
 import { Ticket } from '../../models/ticket.model';
 import { Router } from '@angular/router';
 

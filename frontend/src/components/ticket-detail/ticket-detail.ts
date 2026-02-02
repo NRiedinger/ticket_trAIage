@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TicketService } from '../../services/ticket-service';
+import { TicketService } from '../../services/ticket-service/ticket-service';
 import { Ticket } from '../../models/ticket.model';
 
 import { CardModule } from 'primeng/card';
