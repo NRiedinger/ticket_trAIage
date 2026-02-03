@@ -9,7 +9,7 @@ which analyzes every newly created ticket.
 
 > **Note**: This application is just a proof-of-concept and not production ready. It does not contain authentication and ticket-creation and -handling is done in one place so it's not suitable for real-world-usage.
 
-## Backend
+## Backend (Python Django)
 
 ### Requirements
 > **Note**: The mentioned versions are the ones I used and not necessarily the minimum versions
@@ -52,7 +52,7 @@ Run unit tests with
 python manage.py test tickets
 ```
 
-## Frontend
+## Frontend (Angular)
 
 ### Requirements
 > **Note**: The mentioned versions are the ones I used and not necessarily the minimum versions
