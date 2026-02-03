@@ -1,15 +1,9 @@
 from .models import Ticket
-from .serializers import TicketSerializer, UserSerializer
-from .permissions import IsOwnerOrReadOnly
-from django.contrib.auth.models import User
+from .serializers import TicketSerializer
 from rest_framework.response import Response
-from rest_framework import permissions
-from rest_framework.decorators import api_view, action
+from rest_framework.decorators import api_view
 from rest_framework.reverse import reverse
-from rest_framework import renderers
 from rest_framework import viewsets
-from agents import Agent, Runner
-import json
 from .ticket_agent import TicketAgent
 
 
@@ -17,7 +11,6 @@ from .ticket_agent import TicketAgent
 def api_root(request, format=None):
     return Response(
         {
-            "users": reverse("user-list", request=request, format=format),
             "tickets": reverse("ticket-list", request=request, format=format),
         }
     )
@@ -38,11 +31,3 @@ class TicketViewSet(viewsets.ModelViewSet):
         serializer.save(summary=agent_result.final_output.summary)
         serializer.save(
             suggested_reply=agent_result.final_output.suggested_reply)
-
-
-class UserViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    This viewset automatically provides `list` and `retrieve` actions.
-    """
-    queryset = User.objects.all()
-    serializer_class = UserSerializer

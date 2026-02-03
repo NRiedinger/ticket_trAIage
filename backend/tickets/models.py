@@ -17,14 +17,6 @@ class Ticket(models.Model):
     class Meta:
         ordering = ["created_at"]
 
-    # id implicitly assigned by django
-    # owner = models.ForeignKey(
-    #     "auth.User",
-    #     related_name="tickets",
-    #     on_delete=models.CASCADE,
-    #     editable=False
-    # )
-
     subject = models.CharField(max_length=255)
     from_email = models.EmailField()
     message = models.TextField()
@@ -50,5 +42,3 @@ class Ticket(models.Model):
     feedback_accepted = models.BooleanField(
         null=True, blank=True, editable=False)
 
-    def __str__(self):
-        return f"{self.subject} ({self.priority})"
