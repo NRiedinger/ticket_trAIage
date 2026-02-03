@@ -1,11 +1,25 @@
-# fs_coding_challenge
-Full-Stack Coding Challenge: Smart Support Inbox (Python Backend)
+# Smart Support Inbox
+This project was created as part of a coding challenge. The goal was to build a small full-stack application that helps a customer support team triage inbound messages. 
+The system stores support tickets, analyzes them, suggest replies and tracks wether those 
+suggestions were useful.
 
-## Installation
+For prioritizing, categorizing and suggesting replies, this system uses an OpenAI Agent
+which analyzes every newly created ticket.
 
-### Backend
+> **Note**: This application is just a proof-of-concept and not production ready. It dooes not contain authentication and ticket-creation and -handling is done in one place so it's not suitable for real-world-usage.
 
-1. Go to backend
+
+
+## Backend
+
+### Requirements
+> **Note**: The mentioned versions are the ones I used and not necessarily the minimum versions
+- **Python** 3.12.1
+- **PostgreSQL** 18.1
+
+### Setup
+
+1. Go to backend folder
     ```shell
     cd .\backend\
     ```
@@ -30,4 +44,34 @@ Full-Stack Coding Challenge: Smart Support Inbox (Python Backend)
 5. Run development server
     ```shell
     python manage.py runserver
+    ```
+
+### Testing
+
+Run unit tests with
+```shell
+python manage.py test tickets
+```
+
+## Frontend
+
+### Requirements
+> **Note**: The mentioned versions are the ones I used and not necessarily the minimum versions
+- **Node.js** 25.5.0
+
+### Setup
+
+1. Go to frontend folder
+    ```shell
+    cd .\frontend\
+    ```
+
+2. Install dependencies
+    ```shell
+    npm install
+    ```
+
+3. Run development server
+    ```shell
+    npm start
     ```
