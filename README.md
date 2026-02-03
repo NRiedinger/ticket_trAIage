@@ -75,3 +75,10 @@ python manage.py test tickets
     ```shell
     npm start
     ```
+
+### Testing
+
+Run unit tests with
+```shell
+npm test
+```
