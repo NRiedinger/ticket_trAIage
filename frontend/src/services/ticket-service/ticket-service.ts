@@ -12,10 +12,14 @@ export class TicketService {
     }
 
     public getTicketById(id: number) {
-        return this.http.get(`/api/tickets/${id}`);
+        return this.http.get(`/api/tickets/${id}/`);
     }
 
     public createTicket(ticket: any) {
         return this.http.post('/api/tickets/', ticket);
+    }
+
+    public setTicketSuggestionFeedback(id: number, accepted: boolean | null) {
+        return this.http.patch(`/api/tickets/${id}/`, { feedback_accepted: accepted });
     }
 }

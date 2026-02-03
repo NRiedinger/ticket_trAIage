@@ -6,9 +6,8 @@ suggestions were useful.
 For prioritizing, categorizing and suggesting replies, this system uses an OpenAI Agent
 which analyzes every newly created ticket.
 
-> **Note**: This application is just a proof-of-concept and not production ready. It dooes not contain authentication and ticket-creation and -handling is done in one place so it's not suitable for real-world-usage.
 
-
+> **Note**: This application is just a proof-of-concept and not production ready. It does not contain authentication and ticket-creation and -handling is done in one place so it's not suitable for real-world-usage.
 
 ## Backend
 
@@ -82,3 +81,10 @@ Run unit tests with
 ```shell
 npm test
 ```
+
+## Design choices
+
+Filtering, pagination and sorting of the ticket list is done on the client. This results in fewer requests to the backend and a smoother user experience with a lower ticket volume.
+
+For a much higher volume of tickets, backend filtering, pagination and sorting would be preferred 
+to minimize initial loading times and memory use for the client.

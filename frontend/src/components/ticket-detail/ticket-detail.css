@@ -1,5 +1,11 @@
-a.send-reply {
-    text-decoration: none;
+.suggestion-feedback-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1em;
+}
+
+.suggestion-feedback-container > * {
+    margin: .5em .5em 0 0;
 }
 
 ::ng-deep app-ticket-detail div.card-header-container {
@@ -47,3 +53,12 @@ a.send-reply {
     align-items: flex-start;
     gap: 10px;
 }
+
+::ng-deep app-ticket-detail p-selectbutton > *:nth-child(1).p-togglebutton-checked span {
+    background-color: #22c55e;
+}
+
+::ng-deep app-ticket-detail p-selectbutton > *:nth-child(2).p-togglebutton-checked span {
+    background-color: #ef4444;
+}
+

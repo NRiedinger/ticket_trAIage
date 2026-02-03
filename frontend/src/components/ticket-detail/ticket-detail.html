@@ -81,6 +81,19 @@
                 style="resize: none"
                 [(ngModel)]="reply"
             ></textarea>
+
+            <div>
+                <span>Is this reply suggestion helpful?</span>
+                <div class="suggestion-feedback-container">
+                    <p-selectbutton
+                        [(ngModel)]="suggestion_feedback"
+                        [options]="suggestion_feedback_options"
+                        size="small"
+                        (onChange)="onFeedbackClick($event)"
+                    />
+                </div>
+            </div>
+
             <p-button class="send-reply" severity="info" (onClick)="onSend()">
                 <i class="pi pi-send" pButtonIcon></i>
                 <span pButtonLabel>Send E-Mail</span>

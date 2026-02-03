@@ -40,5 +40,5 @@ class Ticket(models.Model):
     summary = models.TextField(blank=True, editable=False)
     suggested_reply = models.TextField(blank=True, editable=False)
     feedback_accepted = models.BooleanField(
-        null=True, blank=True, editable=False)
+        null=True, blank=True)
 
