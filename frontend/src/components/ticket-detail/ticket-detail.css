@@ -56,9 +56,11 @@
 
 ::ng-deep app-ticket-detail p-selectbutton > *:nth-child(1).p-togglebutton-checked span {
     background-color: #22c55e;
+    color: white;
 }
 
 ::ng-deep app-ticket-detail p-selectbutton > *:nth-child(2).p-togglebutton-checked span {
     background-color: #ef4444;
+    color: white;
 }
 
