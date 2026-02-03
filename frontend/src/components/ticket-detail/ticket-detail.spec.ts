@@ -105,7 +105,7 @@ describe('TicketDetail', () => {
     });
 
     it('should show error toast', () => {
-        component.showError();
+        component.showError('Failed load ticket :(');
 
         expect(messageServiceMock.add).toHaveBeenCalledWith({
             severity: 'error',

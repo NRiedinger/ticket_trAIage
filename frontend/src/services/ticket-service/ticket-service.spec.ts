@@ -34,7 +34,7 @@ describe('TicketService', () => {
 
         const result = service.getTicketById(1);
 
-        expect(httpMock.get).toHaveBeenCalledWith('/api/tickets/1');
+        expect(httpMock.get).toHaveBeenCalledWith('/api/tickets/1/');
         result.subscribe((res) => {
             expect(res).toEqual(mockData);
         });
